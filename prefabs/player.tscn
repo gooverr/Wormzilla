@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://buiprln41cfpx"]
 
-[ext_resource type="Texture2D" uid="uid://dyojls0fykrtk" path="res://Textures/d85118cc-4df9-4be3-b79d-64d70f263cc3.png" id="2_j7vye"]
+[ext_resource type="Texture2D" uid="uid://dyojls0fykrtk" path="res://Textures/Character.png" id="2_j7vye"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8a0k"]
 radius = 20.0
@@ -14,16 +14,19 @@ gravity = Vector3(0, 0, 0)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(6.73532e-06, -0.500017)
-rotation = 1.5708
-scale = Vector2(1.32032, 1.33593)
+texture = ExtResource("2_j7vye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c8a0k")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+show_behind_parent = true
 material = SubResource("CanvasItemMaterial_r8wyu")
-amount = 50
+amount = 80
 process_material = SubResource("ParticleProcessMaterial_5aj4h")
 texture = ExtResource("2_j7vye")
-lifetime = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
