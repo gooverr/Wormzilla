@@ -1,7 +1,7 @@
 extends Area2D
 
-var speed = 350
-var turn_speed = 180
+var speed = 400
+var turn_speed = 267
 var turn = 0.0
 var turn_smoothing_value = 0.1
 
