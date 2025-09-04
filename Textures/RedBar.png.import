@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf4808jghqwd"
-path="res://.godot/imported/GreyBar.png-2069ae0d6c3da607422cb74d9da444ee.ctex"
+uid="uid://bl0q7qjf17otx"
+path="res://.godot/imported/RedBar.png-39a83f30bce5b977b154e9f7ab06aebc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/GreyBar.png"
-dest_files=["res://.godot/imported/GreyBar.png-2069ae0d6c3da607422cb74d9da444ee.ctex"]
+source_file="res://Textures/RedBar.png"
+dest_files=["res://.godot/imported/RedBar.png-39a83f30bce5b977b154e9f7ab06aebc.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://brwvqeqdyhrfr" path="res://Textures/bar_shadow_round_large.png" id="1_xpft5"]
 [ext_resource type="Texture2D" uid="uid://bhhjob6sfnqry" path="res://Textures/bar_round_large.png" id="2_oxaea"]
-[ext_resource type="Script" path="res://scripts/HungerBar.gd" id="3_5h7s1"]
+[ext_resource type="Script" path="res://scripts/hungerbar.gd" id="3_5h7s1"]
 
 [node name="HungerBar" type="CanvasLayer"]
 

@@ -5,6 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_aoga8"]
 
 [node name="FoodArea" type="Area2D"]
+rotation = -1.5708
 script = ExtResource("1_60o1k")
 metadata/_edit_group_ = true
 
@@ -13,3 +14,4 @@ scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_aoga8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t1qe6mgtsngb"
-path="res://.godot/imported/YellowBar.png-79867dff90a0dbc64bdc8a0567eda400.ctex"
+uid="uid://dhvtm6bpuqehx"
+path="res://.godot/imported/BG2.png-facd97d6945a6c997ca0b9f221fc268b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/YellowBar.png"
-dest_files=["res://.godot/imported/YellowBar.png-79867dff90a0dbc64bdc8a0567eda400.ctex"]
+source_file="res://Textures/BG2.png"
+dest_files=["res://.godot/imported/BG2.png-facd97d6945a6c997ca0b9f221fc268b.ctex"]
 
 [params]
 

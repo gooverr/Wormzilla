@@ -1,20 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://buiprln41cfpx"]
+[gd_scene load_steps=8 format=3 uid="uid://buiprln41cfpx"]
 
-[ext_resource type="Texture2D" uid="uid://dyojls0fykrtk" path="res://Textures/Character.png" id="2_j7vye"]
+[ext_resource type="Texture2D" uid="uid://dyojls0fykrtk" path="res://Textures/Character.png" id="1_c8v5v"]
+[ext_resource type="Texture2D" uid="uid://c8aamfx0l427h" path="res://Textures/Character2.png" id="1_p7bh5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8a0k"]
 radius = 20.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r8wyu"]
 
+[sub_resource type="Gradient" id="Gradient_rxyh3"]
+colors = PackedColorArray(1, 1, 1, 1, 0.662452, 0.662452, 0.662452, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iw4fs"]
+gradient = SubResource("Gradient_rxyh3")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5aj4h"]
 gravity = Vector3(0, 0, 0)
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+color_ramp = SubResource("GradientTexture1D_iw4fs")
 
 [node name="player" type="Area2D"]
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_j7vye")
+rotation = 3.14159
+texture = ExtResource("1_c8v5v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_c8a0k")
@@ -22,9 +33,9 @@ shape = SubResource("CircleShape2D_c8a0k")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_r8wyu")
-amount = 80
+amount = 1000
 process_material = SubResource("ParticleProcessMaterial_5aj4h")
-texture = ExtResource("2_j7vye")
+texture = ExtResource("1_p7bh5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
