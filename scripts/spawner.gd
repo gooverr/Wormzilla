@@ -2,7 +2,7 @@ extends Node2D
 
 @export var food_scene: PackedScene
 @export var spawn_radius: float = 500.0
-@export var spawn_interval: float = 1.25
+@export var spawn_interval: float = 1.1
 
 var player
 var hunger_bar

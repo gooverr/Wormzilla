@@ -1,10 +1,11 @@
 extends Area2D
 
-@export var hunger_fill_amount: float = 15
+@export var hunger_fill_amount: float = 13
 @export var turn_speed: float = 2.0
-@export var max_distance: float = 1600.0  # Despawn if farther than this from player
+@export var max_distance: float = 1800.0  # Despawn if farther than this from player
 @export var fade_in_time: float = 1
 @export var fade_out_time: float = 0.3
+
 
 const FOOD_SPRITES = [
 	preload("res://Textures/bug1.png"),
@@ -14,9 +15,17 @@ const FOOD_SPRITES = [
 	preload("res://Textures/Ant1.png")
 ]
 
+# Preload your sounds here:
+const EAT_SOUNDS = [
+	preload("res://Sounds/Eat.wav"),
+	preload("res://Sounds/Eat2.wav"),
+	preload("res://Sounds/Eat3.wav")
+]
+
 var player: Node
 var hunger_bar
 var sprite_node: Sprite2D
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 var fading_out := false  # Prevents double fade calls
 
 func _ready():
@@ -61,6 +70,11 @@ func _on_area_entered(area):
 	if area.is_in_group("Player"):
 		if hunger_bar and hunger_bar.has_method("add_hunger"):
 			hunger_bar.call("add_hunger", hunger_fill_amount)
+			
+			# Play a random eating sound
+		audio_player.stream = EAT_SOUNDS[randi() % EAT_SOUNDS.size()]
+		audio_player.play()
+			
 		start_fade_out()
 		area.grow()
 

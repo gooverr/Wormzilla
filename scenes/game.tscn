@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://it1n1qhtj542"]
+[gd_scene load_steps=14 format=3 uid="uid://it1n1qhtj542"]
 
 [ext_resource type="PackedScene" uid="uid://buiprln41cfpx" path="res://prefabs/player.tscn" id="1_43qf2"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_mt1bp"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ct21es41qppfq" path="res://Textures/DirtHole2.png" id="5_4kk5j"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="6_wp5ee"]
 [ext_resource type="PackedScene" uid="uid://dvdojj50hfjq" path="res://prefabs/food.tscn" id="7_43g7p"]
-[ext_resource type="Script" path="res://scripts/deathscreen.gd" id="9_dv1ou"]
+[ext_resource type="PackedScene" uid="uid://cp5bfettkcvbv" path="res://scenes/death_screen.tscn" id="8_h5is4"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="9_ctfq8"]
+[ext_resource type="PackedScene" uid="uid://chvr0uow3x2x3" path="res://scenes/tunnel.tscn" id="10_r0m1m"]
+[ext_resource type="PackedScene" uid="uid://dpm0guu7awebg" path="res://scenes/pause_menu.tscn" id="11_laf22"]
 
 [sub_resource type="GDScript" id="GDScript_uyv7r"]
 script/source = "extends Node2D
@@ -48,9 +51,9 @@ func spawn_food():
 	print(\"✅ Spawned food at \", food.global_position)
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_p3bfd"]
-font_size = 80
-outline_size = 20
+[sub_resource type="LabelSettings" id="LabelSettings_nales"]
+font_size = 50
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="game" type="Node2D"]
@@ -74,37 +77,22 @@ texture = ExtResource("5_4kk5j")
 script = ExtResource("6_wp5ee")
 food_scene = ExtResource("7_43g7p")
 
-[node name="DeathScreen" type="CanvasLayer" parent="." groups=["DeathScreen"]]
-process_mode = 3
+[node name="DeathScreen" parent="." instance=ExtResource("8_h5is4")]
 visible = false
-script = ExtResource("9_dv1ou")
-
-[node name="ColorRect" type="ColorRect" parent="DeathScreen"]
-offset_right = 1000.0
-offset_bottom = 800.0
-color = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="DeathScreen/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -275.0
-offset_top = -150.0
-offset_right = 278.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "You Starved"
-label_settings = SubResource("LabelSettings_p3bfd")
-
-[node name="TryAgainButton" type="Button" parent="DeathScreen"]
-offset_left = 384.0
-offset_top = 432.0
-offset_right = 576.0
-offset_bottom = 528.0
-text = "RESTART"
 
 [node name="Score" type="CanvasLayer" parent="."]
+layer = 2
+script = ExtResource("9_ctfq8")
+
+[node name="Label" type="Label" parent="Score"]
+offset_left = 20.0
+offset_right = 276.0
+offset_bottom = 80.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_nales")
+vertical_alignment = 1
+
+[node name="Tunnel" parent="." instance=ExtResource("10_r0m1m")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_laf22")]
+visible = false

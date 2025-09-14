@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-@export var drain_rate: float = 6.0
+@export var drain_rate: float = 6.5
 var is_draining: bool = true
 var real_value: float
 
@@ -12,6 +12,7 @@ func _ready():
 
 func _process(delta):
 	if is_draining:
+		await get_tree().create_timer(1.5).timeout
 		real_value -= drain_rate * delta
 		real_value = clamp(real_value, min_value, max_value)
 		value = real_value

@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/hungerbar.gd" id="3_5h7s1"]
 
 [node name="HungerBar" type="CanvasLayer"]
+layer = 2
 
 [node name="HungerBarBar" type="TextureProgressBar" parent="." groups=["HungerBar"]]
 anchors_preset = 2

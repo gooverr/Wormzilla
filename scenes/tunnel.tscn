@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://chvr0uow3x2x3"]
+
+[ext_resource type="Shader" path="res://prefabs/game.gdshader" id="1_kvgw5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k2h3t"]
+shader = ExtResource("1_kvgw5")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.15
+shader_parameter/feather = 0.5
+
+[node name="Tunnel" type="CanvasLayer"]
+
+[node name="TunnelEffect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_k2h3t")
+offset_left = -424.0
+offset_top = -152.0
+offset_right = 1576.0
+offset_bottom = 1448.0
+color = Color(0, 0, 0, 1)

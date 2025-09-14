@@ -15,3 +15,5 @@ shape = SubResource("CircleShape2D_aoga8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

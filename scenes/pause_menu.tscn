@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpm0guu7awebg"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_nd3y0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqb7o"]
+font_size = 80
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 4
+script = ExtResource("1_nd3y0")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1000.0
+offset_bottom = 900.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 280.0
+offset_right = 641.0
+offset_bottom = 390.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_wqb7o")
+
+[node name="RestartButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 424.0
+offset_right = 513.0
+offset_bottom = 455.0
+text = "Restart"
+
+[node name="ResumeButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 504.0
+offset_right = 518.0
+offset_bottom = 535.0
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 584.0
+offset_right = 559.0
+offset_bottom = 615.0
+text = "Quit to menu"
+
+[connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/QuitButton" to="." method="_on_quit_button_pressed"]
