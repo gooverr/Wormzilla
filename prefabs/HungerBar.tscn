@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxqsfykh2dtrj"]
 
-[ext_resource type="Texture2D" uid="uid://brwvqeqdyhrfr" path="res://Textures/bar_shadow_round_large.png" id="1_xpft5"]
-[ext_resource type="Texture2D" uid="uid://bhhjob6sfnqry" path="res://Textures/bar_round_large.png" id="2_oxaea"]
+[ext_resource type="Texture2D" uid="uid://bamxqhipypv4d" path="res://Textures/UnderBar.png" id="1_27pc8"]
+[ext_resource type="Texture2D" uid="uid://cvjlyy2bj0ta8" path="res://Textures/OverBar.png" id="2_ov3re"]
 [ext_resource type="Script" path="res://scripts/hungerbar.gd" id="3_5h7s1"]
 
 [node name="HungerBar" type="CanvasLayer"]
@@ -11,13 +11,13 @@ layer = 2
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = -88.0
-offset_right = 232.0
-offset_bottom = -40.0
+offset_left = 32.0
+offset_top = -92.0001
+offset_right = 224.0
+offset_bottom = -44.0001
 grow_vertical = 0
-scale = Vector2(1.5, 1.25)
+scale = Vector2(1.8, 1.5)
 value = 100.0
-texture_under = ExtResource("1_xpft5")
-texture_progress = ExtResource("2_oxaea")
+texture_under = ExtResource("1_27pc8")
+texture_progress = ExtResource("2_ov3re")
 script = ExtResource("3_5h7s1")

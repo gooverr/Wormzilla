@@ -16,23 +16,25 @@ var zoom = 0.5
 
 var face2 = preload("res://Textures/Character.png")
 var face1 = preload("res://Textures/Character3.png")
+var goo1 = preload("res://Textures/CharacterTeethGoo1.png")
+var goo2 = preload("res://Textures/CharacterTeethGoo2.png")
+var goo3 = preload("res://Textures/CharacterTeethGoo3.png")
 
 var score_manager = null
 
 func _ready():
 	reset_particles()
 	score_manager = get_node("/root/game/Score")  # Adjust path to your score UI node
+	change_face_later()  # ✅ moved delayed texture/speed change here (runs once)
 
 func reset_particles():
-	# Reset basic particle properties
 	particles.scale = default_trail_scale
 	particles.lifetime = 1.0
 	particles.amount_ratio = 1.0
 
-	# ✅ Reset the process material values
 	if particles.process_material:
-		particles.process_material.scale = Vector2(1, 1)  # Original scale
-		particles.process_material.color = Color(1, 1, 1, 1)  # Reset to fully visible white
+		particles.process_material.scale = Vector2(1, 1)
+		particles.process_material.color = Color(1, 1, 1, 1)
 
 	print("Particles fully reset!")
 
@@ -55,6 +57,8 @@ func _process(delta):
 
 	position += transform.y * speed * delta
 
+# ✅ runs once (instead of every frame) to change to face2 after a delay
+func change_face_later() -> void:
 	await get_tree().create_timer(1.5).timeout
 	character.texture = face2
 	speed = 400
@@ -65,18 +69,27 @@ func grow():
 		turn_speed -= 1.5
 		lifetime += 0.1
 		zoom -= 0.005
-		if score_manager:
-			score_manager.increase_score(1)
+		
+		print(sizeamount)
+
+		# ✅ fixed texture order — biggest → smallest
+		if sizeamount >= 5.0:
+			character.texture = goo3
+		elif sizeamount >= 3.7:
+			character.texture = goo2
+		elif sizeamount >= 2.3:
+			character.texture = goo1
+
+	# ✅ keep scoring etc.
+	if score_manager:
+		score_manager.increase_score(1)
 
 	particles.lifetime = lifetime
 	particles.amount_ratio = 1.0
 	if particles.amount_ratio <= 15:
 		particles.amount_ratio += lengthratio
-	particles.process_material.scale.x = sizeamount
-	particles.process_material.scale.y = sizeamount
-	character.scale.x = sizeamount
-	character.scale.y = sizeamount
-	collision.scale.x = sizeamount
-	collision.scale.y = sizeamount
-	camera.zoom.x = zoom
-	camera.zoom.y = zoom
+	particles.process_material.scale = Vector2(sizeamount, sizeamount)
+
+	character.scale = Vector2(sizeamount, sizeamount)
+	collision.scale = Vector2(sizeamount, sizeamount)
+	camera.zoom = Vector2(zoom, zoom)

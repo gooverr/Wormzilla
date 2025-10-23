@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://it1n1qhtj542"]
+[gd_scene load_steps=18 format=3 uid="uid://it1n1qhtj542"]
 
 [ext_resource type="PackedScene" uid="uid://buiprln41cfpx" path="res://prefabs/player.tscn" id="1_43qf2"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_mt1bp"]
@@ -9,8 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://dvdojj50hfjq" path="res://prefabs/food.tscn" id="7_43g7p"]
 [ext_resource type="PackedScene" uid="uid://cp5bfettkcvbv" path="res://scenes/death_screen.tscn" id="8_h5is4"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="9_ctfq8"]
-[ext_resource type="PackedScene" uid="uid://chvr0uow3x2x3" path="res://scenes/tunnel.tscn" id="10_r0m1m"]
+[ext_resource type="FontFile" uid="uid://d2vnc2n0ygt8h" path="res://Fonts/editundo.ttf" id="10_8fw2m"]
+[ext_resource type="PackedScene" uid="uid://chvr0uow3x2x3" path="res://prefabs/tunnel.tscn" id="10_r0m1m"]
 [ext_resource type="PackedScene" uid="uid://dpm0guu7awebg" path="res://scenes/pause_menu.tscn" id="11_laf22"]
+[ext_resource type="Script" path="res://scripts/rock_spawner.gd" id="12_wq828"]
+[ext_resource type="PackedScene" uid="uid://budgwhvjtmfgr" path="res://prefabs/rock.tscn" id="13_qmeq7"]
+[ext_resource type="Texture2D" uid="uid://d1k8p8gh48gvv" path="res://Textures/speed.jpg" id="15_abnxp"]
 
 [sub_resource type="GDScript" id="GDScript_uyv7r"]
 script/source = "extends Node2D
@@ -52,7 +56,8 @@ func spawn_food():
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_nales"]
-font_size = 50
+font = ExtResource("10_8fw2m")
+font_size = 70
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
@@ -60,12 +65,16 @@ outline_color = Color(0, 0, 0, 1)
 script = SubResource("GDScript_uyv7r")
 
 [node name="player" parent="." groups=["Player"] instance=ExtResource("1_43qf2")]
+material = null
 position = Vector2(576, 648)
 script = ExtResource("2_mt1bp")
 
 [node name="Background" parent="." instance=ExtResource("3_we4tt")]
 
 [node name="HungerBar" parent="." instance=ExtResource("4_j1ccm")]
+offset = Vector2(10, -25)
+scale = Vector2(0.9, 1)
+transform = Transform2D(0.9, 0, 0, 1, 10, -25)
 
 [node name="SpawnHole" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -80,7 +89,7 @@ food_scene = ExtResource("7_43g7p")
 [node name="DeathScreen" parent="." instance=ExtResource("8_h5is4")]
 visible = false
 
-[node name="Score" type="CanvasLayer" parent="."]
+[node name="Score" type="CanvasLayer" parent="." groups=["Score"]]
 layer = 2
 script = ExtResource("9_ctfq8")
 
@@ -96,3 +105,17 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("11_laf22")]
 visible = false
+
+[node name="RockSpawner" type="Node2D" parent="."]
+script = ExtResource("12_wq828")
+rock_scene = ExtResource("13_qmeq7")
+
+[node name="Speed" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Speed"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(500, 450)
+scale = Vector2(4.52489, 3.94737)
+texture = ExtResource("15_abnxp")

@@ -1,12 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://buiprln41cfpx"]
+[gd_scene load_steps=11 format=3 uid="uid://buiprln41cfpx"]
 
+[ext_resource type="Shader" path="res://prefabs/player.gdshader" id="1_2gctb"]
 [ext_resource type="Texture2D" uid="uid://b573llkyn75ps" path="res://Textures/Character3.png" id="1_g3h3d"]
 [ext_resource type="Texture2D" uid="uid://c8aamfx0l427h" path="res://Textures/Character2.png" id="1_p7bh5"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_j2h35"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kx6qg"]
+shader = ExtResource("1_2gctb")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0mbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c8a0k"]
 radius = 20.0
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r8wyu"]
 
 [sub_resource type="Gradient" id="Gradient_rxyh3"]
 colors = PackedColorArray(1, 1, 1, 1, 0.662452, 0.662452, 0.662452, 1)
@@ -21,9 +28,11 @@ scale_over_velocity_max = 1.0
 color_ramp = SubResource("GradientTexture1D_iw4fs")
 
 [node name="player" type="Area2D"]
+material = SubResource("ShaderMaterial_kx6qg")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_o0mbw")
 rotation = 3.14159
 texture = ExtResource("1_g3h3d")
 
@@ -32,12 +41,12 @@ shape = SubResource("CircleShape2D_c8a0k")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 show_behind_parent = true
-material = SubResource("CanvasItemMaterial_r8wyu")
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_5aj4h")
 texture = ExtResource("1_p7bh5")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["MainCamera"]]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+script = ExtResource("3_j2h35")
